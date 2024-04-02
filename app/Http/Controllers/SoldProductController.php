@@ -30,9 +30,20 @@ class SoldProductController extends Controller
     {
         if($request->hasFile('photo')){
             $name = $request->file('photo')->getClientOriginalName();
-            $path = $request->file('photo')->storeAs('soldProduct-photos', $name);
+            $path = $request->file('photo')->storeAs('soldProduct-photos', $name, 'public');
         }
-        
+
+        $request->validate([
+            'name'=> 'required| max:255',
+            'client_name'=> 'required| max:255',
+            'client_phone_number'=> 'required',
+            'client_address'=> 'required',
+            'orginal_price'=> 'required',
+            'sale_price'=> 'required',
+            'photo'=> 'mimes:jpg, jpeg, bmp, png',
+            // 'video'=> 'required|mimetypes:video/avi, video/mpeg, video/quicktime, video/mp4',
+        ]);
+
         $soldProduct = SoldProduct::create([
             'user_id' => 2,
             'name'=>$request->name,
@@ -44,7 +55,7 @@ class SoldProductController extends Controller
             'photo'=> $path ?? null,
         ]);
 
-        dd($soldProduct);
+        // dd($soldProduct);
         return redirect()->route('soldProduct.index');
     }
 

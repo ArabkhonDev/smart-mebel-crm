@@ -5,9 +5,9 @@
             <form action="{{route('soldProduct.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 class="text-2xl font-bold ">Sotilgan maxsulot</h2>
-                <p class="my-4 opacity-70">Qayerga va kimga sotilganligi </p>
+                <p class="my-4 opacity-70">Xaridor ismi va manzili</p>
                 <hr class="my-6">
-                <input type="text" name="name" placeholder="sotilgan maxsulot xaqida malumot" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded border-2 border-slate-200 focus:border-slate-600 focus:outline-none">
+                <input type="text" name="name" placeholder="sotilgan maxsulot xaqida malumot" class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded border-2 border-slate-200">
                 <input type="text" name="client_name" placeholder="Xaridor ismi" required class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
                 <input type="number" name="client_phone_number" placeholder="Xaridor tel nomeri +998(__) ___ __ __" required class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">
                 <input type="text" name="client_address" placeholder="Xaridor manzili" required class="p-3 mt-2 mb-4 w-full bg-slate-200 rounded">

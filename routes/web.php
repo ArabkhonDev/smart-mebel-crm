@@ -21,7 +21,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::resources([
-    '/soldProduct' => SoldProductController::class,
-    '/worker' => WorkerController::class
-]);
+
+
+Route::prefix('/admin')->group(function(){
+    Route::resources([
+        '/soldProduct' => SoldProductController::class,
+        '/worker' => WorkerController::class
+    ]);
+});

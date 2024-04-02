@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SoldProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SoldProductController extends Controller
@@ -11,8 +12,14 @@ class SoldProductController extends Controller
     
     public function index()
     {
-        $soldProduct = SoldProduct::latest()->paginate(6);
-        return view('soldProduct.index')->with(['soldProduct'=> $soldProduct]);
+        $soldProducts = SoldProduct::latest()->paginate(6);
+        return view('soldProduct.index')->with(['soldProducts'=> $soldProducts]);
+        // foreach($soldProducts as $soldProduct){
+        //     // dd($soldProduct->user());
+        //     // dd($soldProduct->user->id);
+        //     // dd($soldProduct->user()->id);
+        //     dd($soldProduct->user->name);
+        }
     }
 
     /**
@@ -41,11 +48,11 @@ class SoldProductController extends Controller
             'orginal_price'=> 'required',
             'sale_price'=> 'required',
             'photo'=> 'mimes:jpg, jpeg, bmp, png',
-            // 'video'=> 'required|mimetypes:video/avi, video/mpeg, video/quicktime, video/mp4',
+            // 'video'=> 'required|mimetypes:video/avi, video/mpeg  , video/quicktime, video/mp4',
         ]);
 
         $soldProduct = SoldProduct::create([
-            'user_id' => 2,
+            'user_id' => auth()->user->id,
             'name'=>$request->name,
             'client_name'=>$request->client_name,
             'client_phone_number'=>$request->client_phone_number,
@@ -56,7 +63,7 @@ class SoldProductController extends Controller
         ]);
 
         // dd($soldProduct);
-        return redirect()->route('soldProduct.index');
+        return redirect()->back();
     }
 
     /**
@@ -105,9 +112,6 @@ class SoldProductController extends Controller
         return redirect()->route('soldProduct.show', ['soldProduct' =>$soldProduct->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(SoldProduct $soldProduct)
     {
         if(isset($soldProduct->photo)){

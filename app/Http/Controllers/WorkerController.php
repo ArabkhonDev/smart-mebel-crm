@@ -13,7 +13,7 @@ class WorkerController extends Controller
     
     public function index()
     {
-        $worker = User::latest()->paginate(15);
+        $worker = User::where('role_id', 2)->latest()->paginate(15);
         return view('worker.index')->with(['worker'=> $worker]);
     }
 

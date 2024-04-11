@@ -52,10 +52,6 @@
                     </div>
 
                 </header>
-                {{-- @include('components.according') --}}
-                {{-- @include('components.cards') --}}
-                {{-- @include('components.gallaries') --}}
-                {{-- @include('admin.dashboard') --}}
             </div>
         </div>
     </div>

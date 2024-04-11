@@ -35,9 +35,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function role(){
-        return $this->belongsTo(Role::class);
-    }
     
     public function soldProducts(){
         return $this->hasMany(User::class);
@@ -45,5 +42,10 @@ class User extends Authenticatable
 
     public function workers(){
         return $this->hasMany(Worker::class);
+    }
+
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
     }
 }

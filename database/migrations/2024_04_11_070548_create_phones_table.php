@@ -9,15 +9,18 @@ return new class extends Migration
    
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->string('number');
+            $table->string('title')->default('personal');
             $table->timestamps();
         });
     }
 
+  
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('phones');
     }
 };

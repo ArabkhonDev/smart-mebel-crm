@@ -25,7 +25,7 @@ require __DIR__.'/auth.php';
 
 Route::prefix('/admin')->group(function(){
     Route::resources([
-        '/soldProduct' => SoldProductController::class,
-        '/worker' => WorkerController::class
+        '/soldProducts' => SoldProductController::class,
+        '/workers' => WorkerController::class
     ]);
 });

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\FillableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class SoldProduct extends Model
 {
-    use HasFactory;
+    use HasFactory, FillableTrait;
     protected $fillable = [
         'user_id', 
         'name', 
@@ -20,11 +21,7 @@ class SoldProduct extends Model
     ];
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getNameAttribute()
-    {
-        return $this->user->name;
-    }
 }

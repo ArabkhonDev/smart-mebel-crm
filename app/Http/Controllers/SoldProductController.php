@@ -14,25 +14,15 @@ class SoldProductController extends Controller
     {
         $soldProducts = SoldProduct::latest()->paginate(6);
         return view('soldProduct.index')->with(['soldProducts'=> $soldProducts]);
-        // foreach($soldProducts as $soldProduct){
-        //     // dd($soldProduct->user());
-        //     // dd($soldProduct->user->id);
-        //     // dd($soldProduct->user()->id);
-        //     dd($soldProduct->user->name);
-        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('soldProduct.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         if($request->hasFile('photo')){
@@ -52,7 +42,7 @@ class SoldProductController extends Controller
         ]);
 
         $soldProduct = SoldProduct::create([
-            'user_id' => auth()->user->id,
+            'user_id' => auth()->user()->id,
             'name'=>$request->name,
             'client_name'=>$request->client_name,
             'client_phone_number'=>$request->client_phone_number,
@@ -66,9 +56,7 @@ class SoldProductController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
+  
     public function show(SoldProduct $soldProduct)
     {
         return view('soldProduct.show')->with([
@@ -77,17 +65,12 @@ class SoldProductController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(SoldProduct $soldProduct)
     {
         return view('soldProduct.edit')->with(['soldProduct'=>$soldProduct]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, SoldProduct $soldProduct)
     {
         if($request->hasFile('photo')){

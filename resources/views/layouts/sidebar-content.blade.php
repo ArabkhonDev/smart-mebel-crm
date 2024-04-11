@@ -17,7 +17,7 @@
             </div>
         @else
             <div class="link_item">
-                <a href="#" class="fond-bold">Maxsulot sotish</a>
+                <a href="{{route('worker.create')}}" class="fond-bold">Maxsulot sotish</a>
             </div>
         @endif
         <div class="link_item">

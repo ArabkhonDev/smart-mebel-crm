@@ -11,9 +11,9 @@
                 <div class="p-6 text-gray-900">
                     @if (auth()->user()->role->name == 'manager')
                     <h1 class="text-xl font-bold py-2">Sotilgan maxsulotlar</h1>
-                    @include('components.soldProduct')
+                    @include('soldProduct.index')
                     @else
-                       @include('components.sell-form')
+                       @include('soldProduct.create')
                     @endif
                 </div>
             </div>

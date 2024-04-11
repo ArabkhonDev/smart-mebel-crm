@@ -9,19 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class SoldProduct extends Model
 {
     use HasFactory, FillableTrait;
-    protected $fillable = [
-        'user_id', 
-        'name', 
-        'client_name',
-        'client_phone_number', 
-        'client_address',
-        'orginal_price',
-        'photo',
-        'sale_price',
-    ];
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

@@ -11,6 +11,11 @@ return new class extends Migration
     {
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('address');
+            $table->string('phone_number');
+            $table->string('image')->nullable();
+            $table->integer('salary')->nullable();
             $table->timestamps();
         });
     }
